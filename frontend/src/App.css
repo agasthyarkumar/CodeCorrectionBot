@@ -1,0 +1,70 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.app__header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app__logo {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.app__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 0 12px 12px;
+}
+
+.app__error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  background-color: rgba(248, 81, 73, 0.12);
+  border: 1px solid rgba(248, 81, 73, 0.35);
+  border-radius: var(--radius-md);
+  color: #ff7b72;
+  font-size: 13.5px;
+  flex-shrink: 0;
+}
+
+.app__error-icon {
+  font-style: normal;
+  flex-shrink: 0;
+}
+
+.app__input-area {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

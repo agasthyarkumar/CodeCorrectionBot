@@ -1,0 +1,72 @@
+.input-box {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.input-box__textarea {
+  flex: 1;
+  padding: 11px 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input-box__textarea:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.input-box__textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-box__textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.input-box__submit {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-purple);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.input-box__submit:hover:not(:disabled) {
+  background-color: var(--accent-purple-hover);
+}
+
+.input-box__submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.input-box__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
