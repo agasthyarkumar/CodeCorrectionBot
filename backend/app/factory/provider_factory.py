@@ -5,7 +5,7 @@ from app.providers.base import BaseLLMProvider
 
 logger = logging.getLogger("dsa_chatbot")
 
-_SUPPORTED = ("grok", "openai", "anthropic")
+_SUPPORTED = ("groq", "grok", "openai", "anthropic")
 _PLACEHOLDER_VALUES = {"", "your_api_key_here"}
 
 
@@ -27,6 +27,10 @@ def get_provider() -> BaseLLMProvider:
         return MockProvider()
 
     provider = settings.LLM_PROVIDER.lower()
+
+    if provider == "groq":
+        from app.providers.groq_cloud_provider import GroqCloudProvider
+        return GroqCloudProvider()
 
     if provider == "grok":
         from app.providers.grok_provider import GrokProvider
