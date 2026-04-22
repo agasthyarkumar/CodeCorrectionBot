@@ -5,22 +5,22 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
 import "./Chat.css";
 
+const HINTS = [
+  { mode: "explain",  label: "Explain",  text: "How does a segment tree work?" },
+  { mode: "generate", label: "Generate", text: "Give me a medium graph problem" },
+  { mode: "fix",      label: "Fix",      text: "My binary search returns the wrong index" },
+  { mode: "hint",     label: "Hint",     text: "I'm stuck on the sliding window approach" },
+];
+
 function CodeBlock({ children, className }) {
   const language = /language-(\w+)/.exec(className || "")?.[1];
-  if (!language) {
-    return <code className="chat__inline-code">{children}</code>;
-  }
+  if (!language) return <code className="chat__inline-code">{children}</code>;
   return (
     <SyntaxHighlighter
       language={language}
       style={vscDarkPlus}
       PreTag="div"
-      customStyle={{
-        margin: "10px 0",
-        borderRadius: "8px",
-        fontSize: "13px",
-        border: "1px solid var(--border)",
-      }}
+      customStyle={{ margin: "10px 0", borderRadius: "8px", fontSize: "13px", border: "1px solid var(--border)" }}
     >
       {String(children).replace(/\n$/, "")}
     </SyntaxHighlighter>
@@ -30,19 +30,15 @@ function CodeBlock({ children, className }) {
 function UserMessage({ content, code }) {
   return (
     <div className="chat__message chat__message--user">
-      {code && (
-        <pre className="chat__user-code">
-          <code>{code}</code>
-        </pre>
-      )}
+      {code && <pre className="chat__user-code"><code>{code}</code></pre>}
       <p className="chat__user-text">{content}</p>
     </div>
   );
 }
 
-function AssistantMessage({ content }) {
+function AssistantMessage({ content, isError }) {
   return (
-    <div className="chat__message chat__message--assistant">
+    <div className={`chat__message chat__message--assistant${isError ? " chat__message--error" : ""}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -63,14 +59,12 @@ function AssistantMessage({ content }) {
 function TypingIndicator() {
   return (
     <div className="chat__message chat__message--assistant chat__message--loading">
-      <span className="chat__dot" />
-      <span className="chat__dot" />
-      <span className="chat__dot" />
+      <span className="chat__dot" /><span className="chat__dot" /><span className="chat__dot" />
     </div>
   );
 }
 
-export default function Chat({ messages, loading }) {
+export default function Chat({ messages, loading, onHintClick }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -83,10 +77,18 @@ export default function Chat({ messages, loading }) {
         <div className="chat__empty-state">
           <p className="chat__empty-headline">What do you want to learn today?</p>
           <ul className="chat__empty-hints">
-            <li><strong>Explain</strong> — "How does a segment tree work?"</li>
-            <li><strong>Generate</strong> — "Give me a medium graph problem"</li>
-            <li><strong>Fix</strong> — Paste broken code + describe the bug</li>
-            <li><strong>Hint</strong> — "I'm stuck on the sliding window approach"</li>
+            {HINTS.map((h) => (
+              <li key={h.mode}>
+                <button
+                  className="chat__hint-btn"
+                  onClick={() => onHintClick({ text: h.text, mode: h.mode })}
+                  type="button"
+                >
+                  <strong>{h.label}</strong>
+                  <span className="chat__hint-text">"{h.text}"</span>
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -99,7 +101,7 @@ export default function Chat({ messages, loading }) {
         msg.role === "user" ? (
           <UserMessage key={i} content={msg.content} code={msg.code} />
         ) : (
-          <AssistantMessage key={i} content={msg.content} />
+          <AssistantMessage key={i} content={msg.content} isError={msg.isError} />
         )
       )}
       {loading && <TypingIndicator />}

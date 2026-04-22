@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./InputBox.css";
 
 const PLACEHOLDERS = {
@@ -8,14 +7,11 @@ const PLACEHOLDERS = {
   hint:     'Describe where you\'re stuck — e.g. "I can\'t figure out the recurrence"',
 };
 
-export default function InputBox({ onSubmit, loading, mode }) {
-  const [message, setMessage] = useState("");
-
+export default function InputBox({ value, onChange, onSubmit, loading, mode }) {
   const submit = () => {
-    const trimmed = message.trim();
+    const trimmed = value.trim();
     if (!trimmed || loading) return;
     onSubmit(trimmed);
-    setMessage("");
   };
 
   const handleKeyDown = (e) => {
@@ -29,8 +25,8 @@ export default function InputBox({ onSubmit, loading, mode }) {
     <form className="input-box" onSubmit={(e) => { e.preventDefault(); submit(); }}>
       <textarea
         className="input-box__textarea"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={PLACEHOLDERS[mode] ?? "Ask anything about DSA…"}
         disabled={loading}
@@ -40,7 +36,7 @@ export default function InputBox({ onSubmit, loading, mode }) {
       <button
         className="input-box__submit"
         type="submit"
-        disabled={loading || !message.trim()}
+        disabled={loading || !value.trim()}
         aria-label="Send message"
       >
         {loading ? (

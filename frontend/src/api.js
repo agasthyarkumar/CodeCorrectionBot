@@ -15,8 +15,10 @@ export async function sendMessage({ message, mode, code }) {
   });
 
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail || `Request failed with status ${res.status}`);
+    const data = await res.json().catch(() => ({}));
+    const err = new Error(data.detail || `Request failed with status ${res.status}`);
+    err.status = res.status;
+    throw err;
   }
 
   return res.json();

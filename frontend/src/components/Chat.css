@@ -33,17 +33,42 @@
   text-align: left;
 }
 
-.chat__empty-hints li {
+.chat__hint-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px 14px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   font-size: 13.5px;
   color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background-color 0.15s;
+  font-family: var(--font-sans);
 }
 
-.chat__empty-hints strong {
+.chat__hint-btn:hover {
+  border-color: var(--accent-purple);
+  background-color: rgba(124, 58, 237, 0.06);
+  color: var(--text-primary);
+}
+
+.chat__hint-btn strong {
   color: var(--accent-purple);
+  flex-shrink: 0;
+  min-width: 56px;
+}
+
+.chat__hint-text {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.chat__hint-btn:hover .chat__hint-text {
+  color: var(--text-secondary);
 }
 
 /* ── Messages ─────────────────────────────────────────── */
@@ -70,6 +95,18 @@
   border: 1px solid var(--assistant-border);
   width: 100%;
   border-bottom-left-radius: var(--radius-sm);
+}
+
+.chat__message--error {
+  background-color: rgba(248, 81, 73, 0.06);
+  border-color: rgba(248, 81, 73, 0.3);
+  color: #ff7b72;
+}
+
+.chat__message--error p,
+.chat__message--error li,
+.chat__message--error strong {
+  color: #ff7b72;
 }
 
 .chat__user-text {
