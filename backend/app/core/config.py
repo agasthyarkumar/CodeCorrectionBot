@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     LLM_MAX_TOKENS: int = 4096
     API_TOKEN: str = "dev-token"
     RATE_LIMIT: str = "5/minute"
+    AGENT_MAX_ITERATIONS: int = 5
+    AGENT_EXEC_TIMEOUT: int = 10
 
 
 @lru_cache()

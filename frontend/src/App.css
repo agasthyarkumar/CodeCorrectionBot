@@ -2,65 +2,98 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
 }
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
 
 .app__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  background-color: var(--bg-surface);
+  gap: 16px;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
-  gap: 12px;
 }
 
-.app__header-left {
+.app__brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-.app__logo {
-  font-size: 22px;
-  line-height: 1;
+.app__brand-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
 }
 
-.app__title {
-  font-size: 18px;
-  font-weight: 700;
+.app__brand-name {
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
 }
+
+/* ── Python Agent button ─────────────────────────────────────────────────── */
+
+.app__agent-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.app__agent-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: #f0f6ff;
+}
+
+/* ── Main layout ─────────────────────────────────────────────────────────── */
 
 .app__main {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  padding: 0 12px 12px;
+  padding: 0 16px 16px;
+  background: var(--bg-surface);
 }
+
+/* ── Error banner ────────────────────────────────────────────────────────── */
 
 .app__error {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 9px 14px;
   margin: 8px 0;
-  background-color: rgba(248, 81, 73, 0.12);
-  border: 1px solid rgba(248, 81, 73, 0.35);
+  background: var(--danger-bg);
+  border: 1px solid rgba(209, 36, 47, 0.25);
   border-radius: var(--radius-md);
-  color: #ff7b72;
-  font-size: 13.5px;
+  color: var(--danger);
+  font-size: 13px;
   flex-shrink: 0;
 }
 
-.app__error-icon {
-  font-style: normal;
-  flex-shrink: 0;
-}
+/* ── Input area ──────────────────────────────────────────────────────────── */
 
 .app__input-area {
   flex-shrink: 0;

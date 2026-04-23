@@ -5,6 +5,7 @@ from fastapi import HTTPException
 
 from app.core.config import get_settings
 from app.providers.base import BaseLLMProvider
+from app.utils.system_prompts import DSA_SYSTEM_PROMPT
 
 logger = logging.getLogger("dsa_chatbot")
 
@@ -20,7 +21,10 @@ class OpenAIProvider(BaseLLMProvider):
     async def generate(self, prompt: str, mode: str) -> str:
         payload = {
             "model": self._model,
-            "messages": [{"role": "user", "content": prompt}],
+            "messages": [
+                {"role": "system", "content": DSA_SYSTEM_PROMPT},
+                {"role": "user", "content": prompt},
+            ],
         }
         headers = {
             "Authorization": f"Bearer {self._api_key}",

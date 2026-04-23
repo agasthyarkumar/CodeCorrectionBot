@@ -5,17 +5,11 @@ from fastapi import HTTPException
 
 from app.core.config import get_settings
 from app.providers.base import BaseLLMProvider
+from app.utils.system_prompts import DSA_SYSTEM_PROMPT
 
 logger = logging.getLogger("dsa_chatbot")
 
 _ENDPOINT = "https://api.x.ai/v1/responses"
-
-# Keeps the model focused and trims unnecessary preamble / repetition.
-_SYSTEM_PROMPT = (
-    "You are a precise DSA tutor. Respond in well-structured markdown. "
-    "Be complete but concise — no filler phrases, no restating the question, "
-    "no closing pleasantries."
-)
 
 # Hard ceiling on output tokens — prevents runaway reasoning token spend.
 _MAX_OUTPUT_TOKENS = 4096
@@ -31,7 +25,7 @@ class GrokProvider(BaseLLMProvider):
         payload = {
             "model": self._model,
             "input": [
-                {"role": "system", "content": _SYSTEM_PROMPT},
+                {"role": "system", "content": DSA_SYSTEM_PROMPT},
                 {"role": "user",   "content": prompt},
             ],
             "max_output_tokens": _MAX_OUTPUT_TOKENS,

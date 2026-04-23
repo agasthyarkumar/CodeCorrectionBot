@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -16,7 +16,9 @@
 }
 
 .code-input__label-icon {
-  font-style: normal;
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
 }
 
 .code-input__label-hint {
@@ -30,23 +32,23 @@
 
 .code-input__textarea {
   width: 100%;
-  padding: 12px 14px;
-  background-color: var(--bg-input);
+  padding: 10px 13px;
+  background: var(--bg-code);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  color: var(--accent-cyan);
+  color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: 1.6;
   resize: vertical;
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color 0.12s, box-shadow 0.12s;
   tab-size: 2;
 }
 
 .code-input__textarea:focus {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
 }
 
 .code-input__textarea::placeholder {

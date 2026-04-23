@@ -12,3 +12,8 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     response: str
     mode: str
+
+
+class AgentRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=4000)
+    code: Optional[str] = Field(None, max_length=10000)

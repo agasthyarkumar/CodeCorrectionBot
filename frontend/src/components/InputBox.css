@@ -6,8 +6,8 @@
 
 .input-box__textarea {
   flex: 1;
-  padding: 11px 14px;
-  background-color: var(--bg-surface);
+  padding: 10px 13px;
+  background: var(--bg-input);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   color: var(--text-primary);
@@ -16,17 +16,18 @@
   line-height: 1.6;
   resize: none;
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.12s, box-shadow 0.12s;
 }
 
 .input-box__textarea:focus {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
 }
 
 .input-box__textarea:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
+  background: var(--bg-elevated);
 }
 
 .input-box__textarea::placeholder {
@@ -35,38 +36,38 @@
 
 .input-box__submit {
   flex-shrink: 0;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--accent-purple);
+  background: var(--accent);
   border: none;
   border-radius: var(--radius-md);
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.15s, opacity 0.15s;
+  transition: background 0.12s, opacity 0.12s;
 }
 
 .input-box__submit:hover:not(:disabled) {
-  background-color: var(--accent-purple-hover);
+  background: var(--accent-hover);
 }
 
 .input-box__submit:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
 .input-box__spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
   border-top-color: #fff;
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  animation: ib-spin 0.7s linear infinite;
   display: inline-block;
 }
 
-@keyframes spin {
+@keyframes ib-spin {
   to { transform: rotate(360deg); }
 }

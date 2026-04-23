@@ -8,33 +8,34 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 12px;
+  padding: 5px 11px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background-color: var(--bg-elevated);
+  background: var(--bg-surface);
   color: var(--text-secondary);
   font-size: 13px;
   font-family: var(--font-sans);
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
   white-space: nowrap;
 }
 
 .mode-selector__btn:hover {
-  color: var(--text-primary);
-  border-color: var(--accent-purple);
-  background-color: rgba(124, 58, 237, 0.08);
+  color: var(--accent);
+  border-color: var(--accent);
+  background: #f0f6ff;
 }
 
 .mode-selector__btn--active {
-  color: #c4b5fd;
-  border-color: var(--accent-purple);
-  background-color: rgba(124, 58, 237, 0.18);
+  color: var(--accent);
+  border-color: var(--accent);
+  background: #dbeafe;
   font-weight: 600;
 }
 
 .mode-selector__icon {
-  font-size: 14px;
+  display: flex;
+  align-items: center;
   line-height: 1;
 }
 

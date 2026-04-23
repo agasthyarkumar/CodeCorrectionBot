@@ -1,0 +1,263 @@
+.agent__panel {
+  align-self: flex-start;
+  width: 100%;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--assistant-border);
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.agent__panel--done {
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+/* ── Panel header ────────────────────────────────────────── */
+
+.agent__panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.agent__panel-icon {
+  color: var(--accent-purple);
+  font-size: 14px;
+}
+
+.agent__panel-spinner {
+  margin-left: auto;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent-purple);
+  border-radius: 50%;
+  animation: agent-spin 0.7s linear infinite;
+}
+
+@keyframes agent-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Steps container ─────────────────────────────────────── */
+
+.agent__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Base step ────────────────────────────────────────────── */
+
+.agent__step {
+  padding: 10px 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+}
+
+.agent__step:last-child {
+  border-bottom: none;
+}
+
+.agent__step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.agent__step-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Thinking ────────────────────────────────────────────── */
+
+.agent__step--thinking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding: 12px 16px;
+}
+
+.agent__spinner {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent-purple);
+  border-radius: 50%;
+  animation: agent-spin 0.7s linear infinite;
+}
+
+/* ── Code attempt ────────────────────────────────────────── */
+
+.agent__step--code {
+  background-color: rgba(13, 17, 23, 0.4);
+}
+
+.agent__attempt-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background-color: rgba(124, 58, 237, 0.18);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #c4b5fd;
+  letter-spacing: 0.3px;
+}
+
+/* ── Running ─────────────────────────────────────────────── */
+
+.agent__step--running {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
+.agent__run-icon {
+  color: var(--accent-purple);
+  font-size: 10px;
+}
+
+/* ── Output ──────────────────────────────────────────────── */
+
+.agent__step--output {
+  background-color: rgba(13, 17, 23, 0.3);
+}
+
+.agent__step--success .agent__output-icon {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.agent__step--error .agent__output-icon {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.agent__output-pre {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.agent__step--success .agent__output-pre {
+  border-color: rgba(63, 185, 80, 0.25);
+  color: #7ee787;
+}
+
+.agent__step--error .agent__output-pre {
+  border-color: rgba(248, 81, 73, 0.25);
+  color: #ff7b72;
+}
+
+/* ── Final answer ────────────────────────────────────────── */
+
+.agent__step--final {
+  padding: 16px;
+  background-color: rgba(124, 58, 237, 0.04);
+}
+
+.agent__final-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c4b5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.agent__final-icon {
+  font-size: 14px;
+  color: var(--accent-purple);
+}
+
+.agent__final-content {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* Inherit markdown styles from Chat.css via these selectors */
+.agent__final-content h1,
+.agent__final-content h2,
+.agent__final-content h3 {
+  color: var(--text-primary);
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.agent__final-content h2 {
+  font-size: 15px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+.agent__final-content h3 {
+  font-size: 13.5px;
+  color: var(--accent-purple);
+}
+
+.agent__final-content p { margin-bottom: 8px; }
+.agent__final-content ul,
+.agent__final-content ol { padding-left: 18px; margin-bottom: 8px; }
+.agent__final-content li { margin-bottom: 3px; }
+.agent__final-content strong { font-weight: 600; }
+
+.agent__inline-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background-color: var(--bg-elevated);
+  color: var(--accent-cyan);
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* ── Agent error ──────────────────────────────────────────── */
+
+.agent__step--agent-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #ff7b72;
+  background-color: rgba(248, 81, 73, 0.06);
+}
+
+.agent__error-icon {
+  flex-shrink: 0;
+  font-style: normal;
+}
