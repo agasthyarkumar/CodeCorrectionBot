@@ -9,6 +9,8 @@ from app.utils.system_prompts import DSA_SYSTEM_PROMPT
 
 logger = logging.getLogger("dsa_chatbot")
 
+_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions"
+
 
 class GroqCloudProvider(BaseLLMProvider):
     def __init__(self) -> None:
